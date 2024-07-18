@@ -35,7 +35,7 @@ FinanceTracker is a personal finance management platform designed to help users 
    - Message history and management.
 
 8. **Deployment:**
-   - Application deployment on Heroku utilizing free services.
+   - Application deployment.
 
 ## Technologies Used
 
