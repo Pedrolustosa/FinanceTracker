@@ -2,15 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using FinanceTracker.API.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinanceTracker.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class UsersController(DataContext dataContext) : ControllerBase
+public class UsersController(DataContext dataContext) : BaseApiController
 {
     private readonly DataContext _dataContext = dataContext;
 
+    [AllowAnonymous]
     [HttpGet("GetUsers")]
     public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
     {
@@ -25,6 +27,7 @@ public class UsersController(DataContext dataContext) : ControllerBase
         }
     }
 
+    [Authorize]
     [HttpGet("GetUserById/{id:int}")]
     public async Task<ActionResult<AppUser>> GetUserById(int id)
     {
