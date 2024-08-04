@@ -28,7 +28,6 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/mdb-ui-kit/css/mdb.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
@@ -105,6 +104,6 @@
     }
   },
   "cli": {
-    "analytics": "bd78c49d-e80f-4266-9c29-f98b8db2c351"
+    "analytics": "bfa3a23c-cdcf-44b3-b60e-548f7b234879"
   }
 }

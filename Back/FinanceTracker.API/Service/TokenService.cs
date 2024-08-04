@@ -7,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 
 namespace FinanceTracker.API.Service;
 
-public class TokenService(IConfiguration config, ITokenService tokenService) : ITokenService
+public class TokenService(IConfiguration config) : ITokenService
 {
     public string CreateToken(AppUser user)
     {
@@ -19,7 +19,7 @@ public class TokenService(IConfiguration config, ITokenService tokenService) : I
         {
             new (ClaimTypes.NameIdentifier, user.UserName)
         };
-        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),

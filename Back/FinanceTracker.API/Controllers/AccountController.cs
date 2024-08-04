@@ -2,6 +2,7 @@
 using FinanceTracker.API.DTOs;
 using FinanceTracker.API.Entities;
 using FinanceTracker.API.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
@@ -13,6 +14,7 @@ namespace FinanceTracker.API.Controllers
     [Route("api/[controller]")]
     public class AccountController(DataContext dataContext, ITokenService tokenService) : BaseApiController
     {
+        [AllowAnonymous]
         [HttpPost("Register")]
         public async Task<ActionResult<UserDto>> Register([FromBody] RegisterDto registerDto)
         {
@@ -33,6 +35,7 @@ namespace FinanceTracker.API.Controllers
             };
         }
 
+        [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto loginDto)
         {
