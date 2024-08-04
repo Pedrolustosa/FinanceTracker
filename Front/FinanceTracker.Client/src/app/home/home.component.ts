@@ -33,8 +33,7 @@ export class HomeComponent implements OnInit {
   {
     this.http.get('https://localhost:7032/api/users/getUsers').subscribe({
       next: (response) => (this.users = response),
-      error: (error) => console.log(error),
-      complete: () => console.log('Request has completed'),
+      error: (error) => console.log(error)
     });
   }
 }
