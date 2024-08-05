@@ -1,4 +1,5 @@
 using FinanceTracker.API.Extensions;
+using FinanceTracker.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,10 +19,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
-app.UseAuthorization();
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseCors(opt => opt.AllowAnyHeader()
                       .AllowAnyMethod()
-                      .AllowAnyOrigin());
+                      .WithOrigins("http://localhost:4200", "https://localhost:4200"));
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

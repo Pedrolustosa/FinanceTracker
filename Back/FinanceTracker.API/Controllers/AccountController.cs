@@ -2,7 +2,6 @@
 using FinanceTracker.API.DTOs;
 using FinanceTracker.API.Entities;
 using FinanceTracker.API.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
@@ -14,9 +13,8 @@ namespace FinanceTracker.API.Controllers
     [Route("api/[controller]")]
     public class AccountController(DataContext dataContext, ITokenService tokenService) : BaseApiController
     {
-        [AllowAnonymous]
         [HttpPost("Register")]
-        public async Task<ActionResult<UserDto>> Register([FromBody] RegisterDto registerDto)
+        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
             if (await UserExist(registerDto.UserName)) return BadRequest("Username is taken");
             using var hmac = new HMACSHA512();
@@ -35,9 +33,8 @@ namespace FinanceTracker.API.Controllers
             };
         }
 
-        [AllowAnonymous]
         [HttpPost("Login")]
-        public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto loginDto)
+        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await dataContext.Users.FirstOrDefaultAsync(x => 
                               x.UserName == loginDto.Username.ToLower());
