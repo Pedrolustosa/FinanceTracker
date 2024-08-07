@@ -1,5 +1,12 @@
 ﻿# FinanceTracker
 
+[![Angular](https://img.shields.io/badge/Angular-18.1.4-red)](https://angular.dev/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.3-blueviolet)](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+[![MDB Angular](https://img.shields.io/badge/MDB_Angular-5.2.0-yellow)](https://mdbootstrap.com/docs/angular/)
+[![.NET](https://img.shields.io/badge/.NET-8.0-blue)](https://dotnet.microsoft.com/)
+[![C#](https://img.shields.io/badge/C%23-12.0-purple)](https://docs.microsoft.com/en-us/dotnet/csharp/)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+
 FinanceTracker is a personal finance management platform designed to help users manage their income and expenses efficiently. The application allows users to track financial transactions, categorize expenses, generate financial reports, and communicate with financial advisors. The platform provides real-time notifications and a user-friendly interface for an enhanced experience.
 
 ## Features
