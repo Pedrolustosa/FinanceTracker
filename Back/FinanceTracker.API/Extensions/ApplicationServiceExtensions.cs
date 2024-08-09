@@ -2,6 +2,7 @@
 using FinanceTracker.API.Service;
 using FinanceTracker.API.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using FinanceTracker.API.Helpers;
 
 namespace FinanceTracker.API.Extensions;
 
@@ -11,12 +12,10 @@ public static class ApplicationServiceExtensions
                                                                  IConfiguration configuration)
     {
         services.AddControllers();
-        services.AddDbContext<DataContext>(opt =>
-        {
-            opt.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
-        });
+        services.AddDbContext<DataContext>(opt => { opt.UseSqlite(configuration.GetConnectionString("DefaultConnection")); });
         services.AddScoped<ITokenService, TokenService>();
-
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         return services;
     }
 }
