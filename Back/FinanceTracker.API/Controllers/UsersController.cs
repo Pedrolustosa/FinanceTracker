@@ -1,25 +1,26 @@
-﻿using FinanceTracker.API.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using FinanceTracker.API.Entities;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using FinanceTracker.API.Interfaces;
+using FinanceTracker.API.DTOs;
+using AutoMapper;
 
 namespace FinanceTracker.API.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
-public class UsersController(DataContext dataContext) : BaseApiController
+public class UsersController(IUserRepository userRepository) : BaseApiController
 {
-    private readonly DataContext _dataContext = dataContext;
+    private readonly IUserRepository _userRepository = userRepository;
 
-    [AllowAnonymous]
     [HttpGet("GetUsers")]
-    public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+    public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
     {
         try
         {
-            var users = await _dataContext.Users.ToListAsync();
-            return users;
+            var users = await _userRepository.GetMembersAsync();
+            return Ok(users);
         }
         catch (Exception)
         {
@@ -27,14 +28,28 @@ public class UsersController(DataContext dataContext) : BaseApiController
         }
     }
 
-    [Authorize]
     [HttpGet("GetUserById/{id:int}")]
     public async Task<ActionResult<AppUser>> GetUserById(int id)
     {
         try
         {
-            var user = await _dataContext.Users.FindAsync(id);
-            if(user == null) return NotFound();
+            var user = await _userRepository.GetUserByIdAsync(id);
+            if(user is null) return NotFound();
+            return user;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    [HttpGet("GetUserByUsername/{username}")]
+    public async Task<ActionResult<MemberDto>> GetUserByUsername(string username)
+    {
+        try
+        {
+            var user = await _userRepository.GetMemberAsync(username);
+            if (user is null) return NotFound();
             return user;
         }
         catch (Exception)
