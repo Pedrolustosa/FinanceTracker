@@ -25,7 +25,7 @@ namespace FinanceTracker.API.Controllers
             //    UserName = registerDto.UserName.ToLower(),
             //    PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
             //    PasswordSalt = hmac.Key,
-            //    Knows = 
+            //    KnownAs = 
             //};
             //dataContext.Users.Add(user);
             //await dataContext.SaveChangesAsync();

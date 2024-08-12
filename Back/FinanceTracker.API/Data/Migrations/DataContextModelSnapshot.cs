@@ -44,7 +44,7 @@ namespace FinanceTracker.API.Data.Migrations
                     b.Property<string>("Introdution")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Knows")
+                    b.Property<string>("KnownAs")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -74,7 +74,7 @@ namespace FinanceTracker.API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("AppUserId")
+                    b.Property<int>("AppUserId")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsMain")
@@ -96,9 +96,13 @@ namespace FinanceTracker.API.Data.Migrations
 
             modelBuilder.Entity("FinanceTracker.API.Entities.Photo", b =>
                 {
-                    b.HasOne("FinanceTracker.API.Entities.AppUser", null)
+                    b.HasOne("FinanceTracker.API.Entities.AppUser", "AppUser")
                         .WithMany("Photos")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("FinanceTracker.API.Entities.AppUser", b =>
