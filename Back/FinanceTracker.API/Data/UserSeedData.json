@@ -2,25 +2,35 @@
   {
     "UserName": "user1",
     "DateOfBirth": "2000-01-01",
-    "Knows": "Some knowledge",
+    "KnownAs": "User One",
     "Created": "2024-01-01T00:00:00Z",
     "LastActive": "2024-01-01T00:00:00Z",
     "Gender": "Male",
     "Introduction": "Hello, I'm user1!",
     "City": "Some City",
     "Country": "Some Country",
-    "Photos": []
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/men/2.jpg",
+        "IsMain": true
+      }
+    ]
   },
   {
     "UserName": "user2",
     "DateOfBirth": "1995-05-15",
-    "Knows": "Some other knowledge",
+    "KnownAs": "User Two",
     "Created": "2024-01-01T00:00:00Z",
     "LastActive": "2024-01-01T00:00:00Z",
     "Gender": "Female",
     "Introduction": "Hi, I'm user2!",
     "City": "Another City",
     "Country": "Another Country",
-    "Photos": []
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/5.jpg",
+        "IsMain": true
+      }
+    ]
   }
 ]
