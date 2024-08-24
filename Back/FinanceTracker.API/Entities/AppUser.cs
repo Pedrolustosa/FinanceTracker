@@ -13,7 +13,7 @@ public class AppUser
     public DateTime Created { get; set; } = DateTime.UtcNow;
     public DateTime LastActive { get; set; } = DateTime.UtcNow;
     public string Gender { get; set; }
-    public string? Introdution { get; set; }
+    public string? Introduction { get; set; }
     public required string City { get; set; }
     public required string Country { get; set; }
     public List<Photo> Photos { get; set; } = [];
