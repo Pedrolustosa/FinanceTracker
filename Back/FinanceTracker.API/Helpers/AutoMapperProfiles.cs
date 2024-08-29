@@ -14,5 +14,6 @@ public class AutoMapperProfiles : Profile
             .ForMember(x => x.PhotoUrl, o => 
                        o.MapFrom(s => s.Photos.FirstOrDefault(x => x.IsMain)!.Url));
         CreateMap<Photo, PhotoDto>().ReverseMap();
+        CreateMap<MemberUpdateDto, AppUser>().ReverseMap();
     }
 }
