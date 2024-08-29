@@ -4,15 +4,17 @@ using Microsoft.AspNetCore.Authorization;
 using FinanceTracker.API.Interfaces;
 using FinanceTracker.API.DTOs;
 using AutoMapper;
+using System.Security.Claims;
 
 namespace FinanceTracker.API.Controllers;
 
 [Authorize]
 [ApiController]
 [Route("api/[controller]")]
-public class UsersController(IUserRepository userRepository) : BaseApiController
+public class UsersController(IUserRepository userRepository, IMapper mapper) : BaseApiController
 {
     private readonly IUserRepository _userRepository = userRepository;
+    private readonly IMapper _mapper = mapper;
 
     [HttpGet("GetUsers")]
     public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
@@ -56,5 +58,19 @@ public class UsersController(IUserRepository userRepository) : BaseApiController
         {
             throw;
         }
+    }
+
+    [HttpPut("UpdateUser")]
+    public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
+    {
+        var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        if (username == null) return BadRequest("No username found");
+        var user = await _userRepository.GetUserByUsernameAsync(username);
+        if (user == null) return BadRequest("Could not find user");
+        _mapper.Map(memberUpdateDto, user);
+        _userRepository.Update(user);
+        if (await _userRepository.SaveAllAsync()) return NoContent();
+        return BadRequest("Failed to update the user");
     }
 }
