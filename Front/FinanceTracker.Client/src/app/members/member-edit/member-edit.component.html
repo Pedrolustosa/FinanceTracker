@@ -36,13 +36,16 @@
   </div>
   <div class="col-8">
     <tabset class="member-tabs">
-      <tab heading="Edit photos">
+      <tab heading="Edit profile">
         <form id="editForm" #editForm="ngForm" (ngSubmit)="updateMember()">
           <h4 class="mt-2">Introduction</h4>
           <textarea class="form-control" name="introduction" [(ngModel)]="member.introduction" rows="6"></textarea>
           <h4 class="mt-2">Looking For</h4>
           <textarea class="form-control" name="lookingFor" [(ngModel)]="member.lookingFor" rows="6"></textarea>
         </form>
+      </tab>
+      <tab heading="Edit photo">
+        <app-photo-editor [member]="member" (memberChange)="onMemberChange($event)"></app-photo-editor>
       </tab>
     </tabset>
   </div>
