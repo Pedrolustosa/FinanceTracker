@@ -10,4 +10,10 @@ public class RegisterDto
     [Required]
     [StringLength(12, MinimumLength = 6)]
     public string Password { get; set; } = string.Empty;
+
+    [Required]
+    public string? DateOfBirth { get; set; }
+
+    [Required]
+    public string KnownAs { get; set; }
 }
