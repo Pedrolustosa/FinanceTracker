@@ -98,26 +98,40 @@ Follow these steps to get started with FinanceTracker:
 
 1. **Clone the repository:**
    ``` bash
-    git clone https://github.com/yourusername/FinanceTracker.git
-    cd FinanceTracker
+       git clone https://github.com/yourusername/FinanceTracker.git
+   ```
+   ``` bash
+       cd FinanceTracker
    ```
 
-2. **Clone the repository:**
-   - Navigate to the FinanceTracker.Api folder.
+1. **Clone the repository:**
+   - Navigate to the FinanceTracker.Api folder and create migration for DB.
+      ``` bash
+          dotnet ef migrations add InitialCreat.v1 -o Data/Migrations
+      ```
+      ``` bash
+          dotnet ef database update
+      ```
    - Restore dependencies and run the project:
       ``` bash
-        dotnet restore
-        dotnet run
+          dotnet restore
       ```
-3. **Frontend Setup:**
+      ``` bash
+          dotnet run
+      ```
+      
+      
+2. **Frontend Setup:**
    - Navigate to the FinanceTracker.Client folder.
    - Install dependencies and run the Angular app:
       ``` bash
-        npm install
-        ng serve
+          npm install
+      ```
+      ``` bash
+          ng serve
       ```
 
-4. **Open the Application:**
+3. **Open the Application:**
    - Open your browser and navigate to http://localhost:4200.
 
 ### **Folder Structure**
