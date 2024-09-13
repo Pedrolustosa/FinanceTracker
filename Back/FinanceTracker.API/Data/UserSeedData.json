@@ -32,5 +32,141 @@
         "IsMain": true
       }
     ]
+  },
+  {
+    "UserName": "user3",
+    "DateOfBirth": "1990-07-21",
+    "KnownAs": "User Three",
+    "Created": "2023-12-20T00:00:00Z",
+    "LastActive": "2024-01-10T00:00:00Z",
+    "Gender": "Male",
+    "Introduction": "Hey, I'm user3!",
+    "City": "New City",
+    "Country": "Country A",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/men/10.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName": "user4",
+    "DateOfBirth": "1988-11-30",
+    "KnownAs": "User Four",
+    "Created": "2024-01-05T00:00:00Z",
+    "LastActive": "2024-01-08T00:00:00Z",
+    "Gender": "Female",
+    "Introduction": "Hi, I'm user4!",
+    "City": "City B",
+    "Country": "Country B",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/12.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName": "user5",
+    "DateOfBirth": "2002-04-14",
+    "KnownAs": "User Five",
+    "Created": "2024-01-02T00:00:00Z",
+    "LastActive": "2024-01-06T00:00:00Z",
+    "Gender": "Male",
+    "Introduction": "I'm user5, nice to meet you!",
+    "City": "City C",
+    "Country": "Country C",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/men/5.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName": "user6",
+    "DateOfBirth": "1999-03-12",
+    "KnownAs": "User Six",
+    "Created": "2023-12-15T00:00:00Z",
+    "LastActive": "2024-01-07T00:00:00Z",
+    "Gender": "Female",
+    "Introduction": "Hello, I'm user6!",
+    "City": "City D",
+    "Country": "Country D",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/20.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName": "user7",
+    "DateOfBirth": "1992-09-09",
+    "KnownAs": "User Seven",
+    "Created": "2024-01-03T00:00:00Z",
+    "LastActive": "2024-01-10T00:00:00Z",
+    "Gender": "Male",
+    "Introduction": "Hi there, I'm user7!",
+    "City": "City E",
+    "Country": "Country E",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/men/7.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName": "user8",
+    "DateOfBirth": "1997-12-01",
+    "KnownAs": "User Eight",
+    "Created": "2024-01-02T00:00:00Z",
+    "LastActive": "2024-01-11T00:00:00Z",
+    "Gender": "Female",
+    "Introduction": "I'm user8, happy to be here!",
+    "City": "City F",
+    "Country": "Country F",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/25.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName": "user9",
+    "DateOfBirth": "1985-06-17",
+    "KnownAs": "User Nine",
+    "Created": "2024-01-01T00:00:00Z",
+    "LastActive": "2024-01-05T00:00:00Z",
+    "Gender": "Male",
+    "Introduction": "Hey, I'm user9, nice to meet you!",
+    "City": "City G",
+    "Country": "Country G",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/men/9.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName": "user10",
+    "DateOfBirth": "1993-02-25",
+    "KnownAs": "User Ten",
+    "Created": "2024-01-04T00:00:00Z",
+    "LastActive": "2024-01-09T00:00:00Z",
+    "Gender": "Female",
+    "Introduction": "Hi, I'm user10!",
+    "City": "City H",
+    "Country": "Country H",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/10.jpg",
+        "IsMain": true
+      }
+    ]
   }
 ]
