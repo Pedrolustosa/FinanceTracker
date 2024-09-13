@@ -1,3 +1,4 @@
+import { UserParams } from './../_models/userParams';
 import { Member } from './../_models/member';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
@@ -15,18 +16,35 @@ export class MembersService {
   // members = signal<Member[]>([]);
   paginatedResult = signal<PaginatedResult<Member[]> | null>(null);
 
-  getMembers(pageNumber?: number, pageSize?: number) {
+  getMembers(userParams: UserParams) {
+    let params = this.setPaginationHeader(
+      userParams.pageNumber,
+      userParams.pageSize
+    );
+    params = params.append('minAge', userParams.minAge);
+    params = params.append('maxAge', userParams.maxAge);
+    params = params.append('gender', userParams.gender);
+    return this.http
+      .get<Member[]>(this.baseUrl + 'users/GetUsers', {
+        observe: 'response',
+        params,
+      })
+      .subscribe({
+        next: (response) =>
+          this.paginatedResult.set({
+            items: response.body as Member[],
+            pagination: JSON.parse(response.headers.get('Pagination')!),
+          }),
+      });
+  }
+
+  private setPaginationHeader(pageNumber: number, pageSize: number) {
     let params = new HttpParams();
-    if(pageNumber && pageSize){
+    if (pageNumber && pageSize) {
       params = params.append('pageNumber', pageNumber);
       params = params.append('pageSize', pageSize);
     }
-    return this.http.get<Member[]>(this.baseUrl + 'users/GetUsers', {observe: 'response', params}).subscribe({
-      next: response => this.paginatedResult.set({
-        items: response.body as Member[],
-        pagination: JSON.parse(response.headers.get('Pagination')!)
-      }),
-    });
+    return params;
   }
 
   getMember(userName: string) {
@@ -40,36 +58,36 @@ export class MembersService {
   updateMember(member: Member) {
     return this.http
       .put<Member>(this.baseUrl + 'users/UpdateUser', member)
-      .pipe(
-        // tap(() => {
-        //   this.members.update((members) =>
-        //     members.map((m) => (m.userName === member.userName ? member : m))
-        //   );
-        // })
-      );
+      .pipe
+      // tap(() => {
+      //   this.members.update((members) =>
+      //     members.map((m) => (m.userName === member.userName ? member : m))
+      //   );
+      // })
+      ();
   }
 
   setMainPhoto(photo: Photo) {
     return this.http
       .put(this.baseUrl + 'users/set-main-photo/' + photo.id, {})
-      .pipe(
-        // tap(() => {
-        //   this.members.update((members) =>
-        //     members.map((m) => {
-        //       if (m.photos.includes(photo)) {
-        //         m.photoUrl = photo.url;
-        //       }
-        //       return m;
-        //     })
-        //   );
-        // })
-      );
+      .pipe
+      // tap(() => {
+      //   this.members.update((members) =>
+      //     members.map((m) => {
+      //       if (m.photos.includes(photo)) {
+      //         m.photoUrl = photo.url;
+      //       }
+      //       return m;
+      //     })
+      //   );
+      // })
+      ();
   }
 
   deletePhoto(photo: Photo) {
     return this.http
       .delete(this.baseUrl + 'users/delete-photo/' + photo.id)
-      .pipe(
+      .pipe
       // tap(() => {
       //   this.members.update(members => members.map(m => {
       //     if(m.photos.includes(photo)){
@@ -78,6 +96,6 @@ export class MembersService {
       //     return m;
       //   }))
       // })
-      );
+      ();
   }
 }
