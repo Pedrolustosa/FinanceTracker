@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using FinanceTracker.API.Interfaces;
 using FinanceTracker.API.DTOs;
 using AutoMapper;
-using System.Security.Claims;
 using FinanceTracker.API.Extensions;
+using FinanceTracker.API.Helpers;
 
 namespace FinanceTracker.API.Controllers;
 
@@ -18,11 +18,12 @@ public class UsersController(IUserRepository userRepository, IMapper mapper, IPh
     private readonly IMapper _mapper = mapper;
 
     [HttpGet("GetUsers")]
-    public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+    public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
     {
         try
         {
-            var users = await _userRepository.GetMembersAsync();
+            var users = await _userRepository.GetMembersAsync(userParams);
+            Response.AddPaginationHeader(users);
             return Ok(users);
         }
         catch (Exception)

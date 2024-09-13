@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FinanceTracker.API.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreatev1 : Migration
+    public partial class InitialCreatv1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

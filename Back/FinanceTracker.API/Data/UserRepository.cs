@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using FinanceTracker.API.DTOs;
 using FinanceTracker.API.Entities;
+using FinanceTracker.API.Helpers;
 using FinanceTracker.API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,10 +17,10 @@ public class UserRepository(DataContext dataContext, IMapper mapper) : IUserRepo
                                       .SingleOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<MemberDto>> GetMembersAsync()
+    public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
     {
-        return await dataContext.Users.ProjectTo<MemberDto>(mapper.ConfigurationProvider)
-                                      .ToListAsync();
+        var query = dataContext.Users.ProjectTo<MemberDto>(mapper.ConfigurationProvider);
+        return await PagedList<MemberDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
     }
 
     public async Task<AppUser?> GetUserByIdAsync(int id)
