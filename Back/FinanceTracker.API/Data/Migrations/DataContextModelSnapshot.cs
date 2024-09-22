@@ -23,6 +23,14 @@ namespace FinanceTracker.API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
@@ -33,11 +41,20 @@ namespace FinanceTracker.API.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Interests")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Introduction")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("KnownAs")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("LastActive")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LookingFor")
                         .HasColumnType("TEXT");
 
                     b.Property<byte[]>("PasswordHash")

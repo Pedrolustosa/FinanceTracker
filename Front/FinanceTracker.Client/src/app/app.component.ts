@@ -8,13 +8,12 @@ import { NgxSpinnerComponent } from 'ngx-spinner';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavComponent, HomeComponent, NgxSpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
+  imports: [RouterOutlet, NavComponent, HomeComponent, NgxSpinnerComponent]
 })
 export class AppComponent implements OnInit {
   private accountService = inject(AccountService);
-  title = 'Financial Tracker';
 
   ngOnInit(): void { this.setCurrentUser() }
 

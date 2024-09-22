@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinanceTracker.API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240913191633_InitialCreat.v1")]
-    partial class InitialCreatv1
+    [Migration("20240922114641_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,10 +26,28 @@ namespace FinanceTracker.API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
                     b.Property<DateOnly>("DateOfBirth")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Interests")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Introduction")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("KnownAs")
@@ -37,6 +55,9 @@ namespace FinanceTracker.API.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("LastActive")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LookingFor")
                         .HasColumnType("TEXT");
 
                     b.Property<byte[]>("PasswordHash")
@@ -54,6 +75,51 @@ namespace FinanceTracker.API.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("FinanceTracker.API.Entities.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateRead")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("MessageSent")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("RecipientDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RecipientId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("RecipientUsername")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("SenderDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SenderId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SenderUsername")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipientId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("FinanceTracker.API.Entities.Photo", b =>
@@ -82,6 +148,25 @@ namespace FinanceTracker.API.Data.Migrations
                     b.ToTable("Photos");
                 });
 
+            modelBuilder.Entity("FinanceTracker.API.Entities.Message", b =>
+                {
+                    b.HasOne("FinanceTracker.API.Entities.AppUser", "Recipient")
+                        .WithMany("MessagesReceived")
+                        .HasForeignKey("RecipientId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("FinanceTracker.API.Entities.AppUser", "Sender")
+                        .WithMany("MessagesSent")
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Recipient");
+
+                    b.Navigation("Sender");
+                });
+
             modelBuilder.Entity("FinanceTracker.API.Entities.Photo", b =>
                 {
                     b.HasOne("FinanceTracker.API.Entities.AppUser", "AppUser")
@@ -95,6 +180,10 @@ namespace FinanceTracker.API.Data.Migrations
 
             modelBuilder.Entity("FinanceTracker.API.Entities.AppUser", b =>
                 {
+                    b.Navigation("MessagesReceived");
+
+                    b.Navigation("MessagesSent");
+
                     b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618

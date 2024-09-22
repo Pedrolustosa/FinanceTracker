@@ -7,12 +7,12 @@ namespace FinanceTracker.API.Extensions;
 public static class IdentityServiceExtensions
 {
     public static IServiceCollection AddIdentityServices(this IServiceCollection services,
-                                                              IConfiguration configuration)
+                                                              IConfiguration config)
     {
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>
         {
-            var tokenKey = configuration["TokenKey"] ?? throw new Exception("TokenKey not found");
+            var tokenKey = config["TokenKey"] ?? throw new Exception("TokenKey not found");
             options.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,

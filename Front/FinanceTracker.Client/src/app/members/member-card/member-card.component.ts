@@ -7,7 +7,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './member-card.component.html',
-  styleUrl: './member-card.component.css'
+  styleUrl: './member-card.component.css',
 })
 export class MemberCardComponent {
   member = input.required<Member>();

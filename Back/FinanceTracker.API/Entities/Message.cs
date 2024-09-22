@@ -11,7 +11,7 @@ public class Message
     public bool SenderDeleted { get; set; }
     public bool RecipientDeleted { get; set; }
 
-
+    // navigation properties
     public int SenderId { get; set; }
     public AppUser Sender { get; set; } = null!;
     public int RecipientId { get; set; }
