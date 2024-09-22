@@ -14,23 +14,21 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavComponent {
   accountService = inject(AccountService);
-  private router = inject(Router);
+  private router = inject(Router)
   private toastr = inject(ToastrService);
   model: any = {};
 
-  login(){
+  login() {
     this.accountService.login(this.model).subscribe({
       next: _ => {
-        this.router.navigateByUrl('/members');
-        this.toastr.success('Welcome to Financial Tracker!');
+        this.router.navigateByUrl('/members')
       },
       error: error => this.toastr.error(error.error)
     })
   }
 
-  logout(){
+  logout() {
     this.accountService.logout();
     this.router.navigateByUrl('/');
-    this.toastr.success('See you later!');
   }
 }

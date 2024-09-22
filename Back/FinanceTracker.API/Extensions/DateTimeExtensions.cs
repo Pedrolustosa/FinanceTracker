@@ -1,13 +1,15 @@
-﻿namespace FinanceTracker.API.Extensions
+﻿namespace FinanceTracker.API.Extensions;
+
+public static class DateTimeExtensions
 {
-    public static class DateTimeExtensions
+    public static int CalculateAge(this DateOnly dob) 
     {
-        public static int CalculateAge(this DateOnly dateOnly) 
-        {
-            var today = DateOnly.FromDateTime(DateTime.Now);
-            var age = today.Year - dateOnly.Year;
-            if (dateOnly > today.AddYears(-age)) age--;
-            return age;
-        }
+        var today = DateOnly.FromDateTime(DateTime.Now);
+
+        var age = today.Year - dob.Year;
+
+        if (dob > today.AddYears(-age)) age--;
+
+        return age;
     }
 }

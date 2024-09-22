@@ -1,15 +1,17 @@
 ﻿using FinanceTracker.API.Data;
+using Microsoft.AspNetCore.Mvc;
 using FinanceTracker.API.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceTracker.API.Controllers;
 
-public class BuggyController(DataContext dataContext) : BaseApiController
+public class BuggyController(DataContext context) : BaseApiController
 {
+    private readonly DataContext _context = context;
+
     [Authorize]
     [HttpGet("auth")]
-    public ActionResult<string> GetAuth()
+    public ActionResult<string> GetSecret()
     {
         return "secret text";
     }
@@ -17,28 +19,22 @@ public class BuggyController(DataContext dataContext) : BaseApiController
     [HttpGet("not-found")]
     public ActionResult<AppUser> GetNotFound()
     {
-        var thing = dataContext.Users.Find(-1);
-        if (thing is null) return NotFound();
-        return thing;
+        var thing = _context.Users.Find(-1);
+        if (thing == null) return NotFound();
+        return Ok(thing);
     }
 
     [HttpGet("server-error")]
-    public ActionResult<AppUser> GetServerError()
+    public ActionResult<string> GetServerError()
     {
-        try
-        {
-            var thing = dataContext.Users.Find(-1) ?? throw new Exception("A bad thing has happened");
-            return thing;
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Computer says no!");
-        }
+        var thing = _context.Users.Find(-1);
+        var thingToReturn = thing.ToString();
+        return thingToReturn;
     }
 
     [HttpGet("bad-request")]
     public ActionResult<string> GetBadRequest()
     {
-        return BadRequest("This was not a good request");
+        return BadRequest();
     }
 }
