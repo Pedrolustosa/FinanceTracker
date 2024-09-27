@@ -2,6 +2,7 @@ using FinanceTracker.API.Data;
 using FinanceTracker.API.Entities;
 using FinanceTracker.API.Extensions;
 using FinanceTracker.API.Middleware;
+using FinanceTracker.API.SignalR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -72,6 +73,7 @@ app.UseCors(opt => opt.AllowAnyHeader()
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapHub<PresenceHub>("hubs/presence");
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 try
