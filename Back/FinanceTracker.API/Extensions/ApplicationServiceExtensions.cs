@@ -3,6 +3,7 @@ using FinanceTracker.API.Service;
 using FinanceTracker.API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using FinanceTracker.API.Helpers;
+using FinanceTracker.API.SignalR;
 
 namespace FinanceTracker.API.Extensions;
 
@@ -25,6 +26,7 @@ public static class ApplicationServiceExtensions
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
         services.AddSignalR();
+        services.AddSingleton<PresenceTracker>();
         return services;
     }
 }
