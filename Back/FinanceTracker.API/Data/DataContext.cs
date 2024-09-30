@@ -10,6 +10,8 @@ public class DataContext(DbContextOptions options) : IdentityDbContext<AppUser, 
     IdentityRoleClaim<int>, IdentityUserToken<int>>(options)
 {
     public DbSet<Message> Messages { get; set; }
+    public DbSet<Group> Groups { get; set; }
+    public DbSet<Connection> Connections { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
