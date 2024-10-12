@@ -13,6 +13,7 @@ import { TestErrorComponent } from './errors/test-error/test-error.component';
 import { memberDetailedResolver } from './_resolver/member-detailed.resolver';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { adminGuard } from './_guards/admin.guard';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -28,7 +29,8 @@ export const routes: Routes = [
               canDeactivate: [preventUnsavedChangesGuard]},
           {path: 'lists', component: ListsComponent},
           {path: 'messages', component: MessagesComponent},
-          {path: 'admin', component: AdminPanelComponent, canActivate: [adminGuard]}
+          {path: 'admin', component: AdminPanelComponent, canActivate: [adminGuard]},
+          {path: 'dashboard', component: DashboardComponent}
       ]
   },
   {path: 'errors', component: TestErrorComponent},
