@@ -1,9 +1,121 @@
-.dropdown-toggle, .dropdown-item{
-  cursor: pointer;
+/* Navbar estilos */
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1030;
 }
 
-img{
-  max-height: 50px;
-  border: 2px solid white;
-  display: inline;
+.navbar-brand {
+  display: flex;
+  align-items: center; /* Alinha o ícone da logo e o nome */
+}
+
+.logo-img {
+  max-height: 40px;
+}
+
+/* Ícone de notificação (sino) visível apenas no modo desktop */
+.navbar-nav .fa-bell {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Ícone de notificação visível no modo responsivo */
+.d-lg-none .fa-bell {
+  font-size: 1.5rem;
+  margin-left: 10px;
+}
+
+/* Nome do sistema visível apenas no desktop */
+.navbar-brand span {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Estilo geral para manter os ícones alinhados na navbar */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 0.25rem 0.75rem;
+}
+
+/* Sidebar estilos */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 70px; /* Começa logo abaixo do navbar */
+  left: -250px;
+  z-index: 1020;
+  transition: left 0.3s ease-in-out;
+  background-color: #ff7a22;
+}
+
+.sidebar-open {
+  left: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.sidebar .nav-link {
+  padding: 15px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.sidebar .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.active-link {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-right: 4px solid #1abc9c;
+}
+
+.nav-item i {
+  font-size: 1.2rem;
+}
+
+/* Exibição do sidebar em telas maiores */
+@media (min-width: 992px) {
+  .sidebar {
+    left: 0;
+    top: 70px;
+  }
+  .sidebar-header {
+    display: none;
+  }
+}
+
+/* Estilos responsivos */
+@media (max-width: 992px) {
+  .navbar .navbar-brand {
+    font-size: 1.1rem;
+  }
+
+  .form-control {
+    display: none;
+  }
+
+  .sidebar {
+    left: -250px;
+    top: 0;
+    height: 100%;
+    z-index: 1040;
+  }
+
+  .sidebar-open {
+    left: 0;
+  }
 }

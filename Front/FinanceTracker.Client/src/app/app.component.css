@@ -1,0 +1,13 @@
+/* Ajustes para o conteúdo principal */
+#content {
+  margin-left: 0;
+  margin-top: 56px; /* Altura do navbar */
+  padding: 20px;
+}
+
+/* Ajuste do conteúdo quando a sidebar está visível em telas maiores */
+@media (min-width: 768px) {
+  #content {
+    margin-left: 250px;
+  }
+}

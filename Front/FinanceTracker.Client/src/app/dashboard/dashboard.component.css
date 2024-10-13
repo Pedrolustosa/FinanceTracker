@@ -1,0 +1,50 @@
+/* Card styles */
+.card {
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.card-body h5 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.card-body p {
+  font-size: 0.85rem;
+}
+
+.border-left-primary {
+  border-left: 4px solid #007bff;
+}
+
+.border-left-success {
+  border-left: 4px solid #28a745;
+}
+
+.border-left-info {
+  border-left: 4px solid #17a2b8;
+}
+
+.border-left-warning {
+  border-left: 4px solid #ffc107;
+}
+
+/* Chart container */
+canvas {
+  width: 100% !important;
+  height: 300px !important;
+}
+
+@media (max-width: 768px) {
+  .card-body h5 {
+    font-size: 1.2rem;
+  }
+  canvas {
+    height: 200px !important;
+  }
+}

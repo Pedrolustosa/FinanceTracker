@@ -6,7 +6,6 @@ namespace FinanceTracker.API.Entities
     {
         [Key]
         public required string Name { get; set; }
-
-        public ICollection<Connection> Connections { get; set; }
+        public ICollection<Connection> Connections { get; set; } = [];
     }
 }

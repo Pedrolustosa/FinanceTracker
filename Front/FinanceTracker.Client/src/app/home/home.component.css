@@ -1,0 +1,64 @@
+/* Hero Section */
+.hero-section {
+  min-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  background-blend-mode: darken;
+  color: #fff;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+}
+
+.hero-section p {
+  font-size: 1.25rem;
+}
+
+/* Cards */
+.card {
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card img {
+  height: 250px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Carousel */
+.carousel-item img {
+  height: 400px;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Call-to-Action Section */
+.bg-primary {
+  background-color: #0066cc !important;
+}
+
+.btn-light {
+  color: #0066cc;
+  border-color: #0066cc;
+}
+
+.btn-light:hover {
+  background-color: #005bb5;
+}

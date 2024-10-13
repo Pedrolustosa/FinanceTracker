@@ -12,7 +12,7 @@ public class MessageHub(IUnitOfWork unitOfWork, IMapper mapper, IHubContext<Pres
     public override async Task OnConnectedAsync()
     {
         var httpContext = Context.GetHttpContext();
-        var otherUser = httpContext.Request.Query["user"];
+        var otherUser = httpContext?.Request.Query["user"];
         if (Context.User == null || string.IsNullOrEmpty(otherUser)) throw new Exception("Cannot join group");
         var groupName = GetGroupName(Context.User.GetUsername(), otherUser);  
         await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
