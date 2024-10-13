@@ -1,51 +1,105 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
-  <div class="container">
-    <a class="navbar-brand" routerLink="/" routerLinkActive="active">Dating App</a>
+<!-- Navbar fixa no topo -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+  <div class="container-fluid d-flex align-items-center justify-content-between">
 
+    <!-- Botão de abrir o sidebar no modo responsivo -->
+    <button class="navbar-toggler d-lg-none me-3" type="button" (click)="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
 
-    <ul class="navbar-nav me-auto mb-2 mb-md-0">
-      @if (accountService.currentUser()) {
-      <li class="nav-item">
-        <a routerLink="/members" routerLinkActive="active" class="nav-link">Matches</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/lists" routerLinkActive="active" class="nav-link">Lists</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/messages" routerLinkActive="active" class="nav-link">Messages</a>
-      </li>
-      <li *appHasRole="['Admin','Moderator']" class="nav-item">
-        <a routerLink="/admin" routerLinkActive="active" class="nav-link">Admin</a>
-      </li>
-      }
-      <li class="nav-item">
-        <a routerLink="/errors" routerLinkActive="active" class="nav-link">Errors</a>
-      </li>
-    </ul>
-
-    @if (accountService.currentUser()) {
-    <div dropdown class="dropdown">
-      <img class="me-2" src="{{accountService.currentUser()?.photoUrl || './assets/user.png'}}" alt="user main image">
-      <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
-        Welcome {{accountService.currentUser()?.knownAs}}
+    <!-- Ícone do sistema e nome exibidos corretamente conforme o modo -->
+    <div class="d-flex align-items-center">
+      <a class="navbar-brand d-flex align-items-center" routerLink="/">
+        <img src="../../../assets/financa.png" alt="Financial Tracker Logo" class="logo-img">
+        <span class="d-none d-lg-inline ms-2">Financial Tracker</span> <!-- Nome aparece apenas no desktop -->
       </a>
-      <div *dropdownMenu class="dropdown-menu">
-        <a routerLink="/member/edit" class="dropdown-item">Edit profile</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" (click)="logout()">Logout</a>
-      </div>
+      <!-- Ícone de notificação (sino) visível apenas no modo responsivo -->
+      <a href="#" class="nav-link text-dark d-flex align-items-center d-lg-none">
+        <i class="fas fa-bell"></i>
+      </a>
     </div>
-    }
 
-    @if (!accountService.currentUser()) {
-    <form #loginForm="ngForm" (ngSubmit)="login()" class="d-flex" autocomplete="off">
-      <input name="username" [(ngModel)]="model.username" class="form-control me-2" placeholder="Username">
-      <input name="password" [(ngModel)]="model.password" class="form-control me-2" placeholder="Password"
-        type="password">
-      <button class="btn btn-success" type="submit">Login</button>
-    </form>
-    }
+    <!-- Dropdown do usuário com ngx-bootstrap alinhado à direita ou formulário de login -->
+    <ul class="navbar-nav d-flex align-items-center ms-auto">
+      <!-- Ícone de notificação (sino) visível apenas no modo desktop -->
+      <li class="nav-item me-3 d-none d-lg-flex align-items-center" *ngIf="accountService.currentUser()">
+        <a href="#" class="nav-link text-dark">
+          <i class="fas fa-bell"></i>
+        </a>
+      </li>
 
+      <ng-container *ngIf="accountService.currentUser(); else loginForm">
+        <!-- Usuário autenticado -->
+        <li class="nav-item dropdown d-flex align-items-center" dropdown>
+          <a class="nav-link dropdown-toggle text-dark d-flex align-items-center" dropdownToggle>
+            <img class="rounded-circle me-2" [src]="accountService.currentUser()?.photoUrl || './assets/user.png'"
+              alt="User Image" style="width: 40px; height: 40px;">
+            <span class="d-none d-lg-inline">{{ accountService.currentUser()?.knownAs }}</span>
+          </a>
+          <ul *dropdownMenu class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" routerLink="/member/edit">Edit Profile</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ng-container>
 
+      <!-- Formulário de login para usuários deslogados -->
+      <ng-template #loginForm>
+        <form #loginForm="ngForm" (ngSubmit)="login()" class="d-flex ms-auto" autocomplete="off">
+          <input name="username" [(ngModel)]="model.username" class="form-control me-2" placeholder="Username" />
+          <input name="password" [(ngModel)]="model.password" class="form-control me-2" placeholder="Password"
+            type="password" />
+          <button class="btn btn-success" type="submit">Login</button>
+        </form>
+      </ng-template>
+    </ul>
   </div>
 </nav>
+
+<!-- Sidebar sempre disponível em telas maiores -->
+<div id="sidebar" [class.sidebar-open]="sidebarOpen" class="sidebar bg-primary text-white">
+  <!-- Botão de fechar com ícone de X -->
+  <div class="sidebar-header d-lg-none d-flex justify-content-end p-3">
+    <button class="btn btn-link text-white" (click)="closeSidebar()">
+      <i class="fas fa-times fa-lg"></i>
+    </button>
+  </div>
+
+  <ul class="nav flex-column p-2">
+    <li class="nav-item">
+      <a routerLink="/home" routerLinkActive="active-link" class="nav-link text-white d-flex align-items-center">
+        <i class="fas fa-home me-2"></i> Home
+      </a>
+    </li>
+    <ng-container *ngIf="accountService.currentUser()">
+      <li class="nav-item">
+        <a routerLink="/dashboard" routerLinkActive="active-link" class="nav-link text-white d-flex align-items-center">
+          <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/members" routerLinkActive="active-link" class="nav-link text-white d-flex align-items-center">
+          <i class="fas fa-users me-2"></i> Matches
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/lists" routerLinkActive="active-link" class="nav-link text-white d-flex align-items-center">
+          <i class="fas fa-list me-2"></i> Lists
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/messages" routerLinkActive="active-link" class="nav-link text-white d-flex align-items-center">
+          <i class="fas fa-envelope me-2"></i> Messages
+        </a>
+      </li>
+      <li *appHasRole="['Admin', 'Moderator']" class="nav-item">
+        <a routerLink="/admin" routerLinkActive="active-link" class="nav-link text-white d-flex align-items-center">
+          <i class="fas fa-user-shield me-2"></i> Admin
+        </a>
+      </li>
+    </ng-container>
+  </ul>
+</div>

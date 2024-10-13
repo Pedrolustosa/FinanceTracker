@@ -5,11 +5,13 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HasRoleDirective } from '../../_directives/has-role.directive';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-nav',
   standalone: true,
   imports: [
+    NgIf,
     FormsModule,
     BsDropdownModule,
     RouterLink,
@@ -17,13 +19,16 @@ import { HasRoleDirective } from '../../_directives/has-role.directive';
     HasRoleDirective,
   ],
   templateUrl: './nav.component.html',
-  styleUrl: './nav.component.css',
+  styleUrls: ['./nav.component.css'],
 })
 export class NavComponent {
   accountService = inject(AccountService);
   private router = inject(Router);
   private toastr = inject(ToastrService);
   model: any = {};
+
+  // Variável para controlar a sidebar
+  sidebarOpen = false;
 
   login() {
     this.accountService.login(this.model).subscribe({
@@ -37,5 +42,14 @@ export class NavComponent {
   logout() {
     this.accountService.logout();
     this.router.navigateByUrl('/');
+  }
+
+  // Funções para abrir/fechar o sidebar
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
+  }
+
+  closeSidebar() {
+    this.sidebarOpen = false;
   }
 }

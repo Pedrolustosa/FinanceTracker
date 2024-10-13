@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
-import { RegisterComponent } from "../register/register.component";
+import { CarouselConfig, CarouselModule } from 'ngx-bootstrap/carousel';
+import { NgFor, NgIf } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RegisterComponent],
+  imports: [NgFor, NgIf, CarouselModule, RouterModule],
+  providers: [
+    {
+      provide: CarouselConfig,
+      useValue: { interval: 12000, noPause: true, showIndicators: true },
+    },
+  ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
-  registerMode = false;
-
-  registerToggle() { this.registerMode = !this.registerMode; }
-
-  cancelRegisterMode(event: boolean) { this.registerMode = event; }
-}
+export class HomeComponent {}
