@@ -7,6 +7,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.11" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.10" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
@@ -15,7 +16,6 @@
 	
   <ItemGroup>
     <ProjectReference Include="..\FinanceTracker.Application\FinanceTracker.Application.csproj" />
-    <ProjectReference Include="..\FinanceTracker.Domain\FinanceTracker.Domain.csproj" />
     <ProjectReference Include="..\FinanceTracker.Infra\FinanceTracker.Infra.csproj" />
   </ItemGroup>
 

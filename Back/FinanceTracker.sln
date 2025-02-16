@@ -5,13 +5,15 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceTracker.API", "FinanceTracker.API\FinanceTracker.API.csproj", "{2DF1F9EC-7B11-4B0B-93F7-E6CA780D3EC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceTracker.Application", "FinanceTracker.Application\FinanceTracker.Application.csproj", "{156B31E9-7FC4-408D-98C6-F7765A7F8477}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceTracker.Application", "FinanceTracker.Application\FinanceTracker.Application.csproj", "{156B31E9-7FC4-408D-98C6-F7765A7F8477}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceTracker.Domain", "FinanceTracker.Domain\FinanceTracker.Domain.csproj", "{3CE9DB7F-A587-46C9-8D86-344456DD8156}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceTracker.Domain", "FinanceTracker.Domain\FinanceTracker.Domain.csproj", "{3CE9DB7F-A587-46C9-8D86-344456DD8156}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceTracker.Infra", "FinanceTracker.Infra\FinanceTracker.Infra.csproj", "{9DD98694-4EFA-4C49-9BA0-EE941AE79262}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceTracker.Infra", "FinanceTracker.Infra\FinanceTracker.Infra.csproj", "{9DD98694-4EFA-4C49-9BA0-EE941AE79262}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceTracker.Infra.IoC", "FinanceTracker.Infra.IoC\FinanceTracker.Infra.IoC.csproj", "{57CA933E-DF28-46E0-B405-5B75E26904EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceTracker.Infra.IoC", "FinanceTracker.Infra.IoC\FinanceTracker.Infra.IoC.csproj", "{57CA933E-DF28-46E0-B405-5B75E26904EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceTracker.Shared", "FinanceTracker.Shared\FinanceTracker.Shared.csproj", "{C6C97559-244C-47E8-AEAA-E4892EC28568}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{57CA933E-DF28-46E0-B405-5B75E26904EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57CA933E-DF28-46E0-B405-5B75E26904EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57CA933E-DF28-46E0-B405-5B75E26904EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6C97559-244C-47E8-AEAA-E4892EC28568}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C97559-244C-47E8-AEAA-E4892EC28568}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C97559-244C-47E8-AEAA-E4892EC28568}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C97559-244C-47E8-AEAA-E4892EC28568}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

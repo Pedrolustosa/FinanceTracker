@@ -1,40 +1,39 @@
-﻿using FinanceTracker.API.Data;
-using Microsoft.AspNetCore.Mvc;
-using FinanceTracker.API.Entities;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using FinanceTracker.Application.Interface;
 
-namespace FinanceTracker.API.Controllers;
-
-public class BuggyController(DataContext context) : BaseApiController
+namespace FinanceTracker.API.Controllers
 {
-    private readonly DataContext _context = context;
-
-    [Authorize]
-    [HttpGet("auth")]
-    public ActionResult<string> GetSecret()
+    public class BuggyController(IBuggyService buggyService) : BaseApiController
     {
-        return "secret text";
-    }
+        private readonly IBuggyService _buggyService = buggyService;
 
-    [HttpGet("not-found")]
-    public ActionResult<AppUser> GetNotFound()
-    {
-        var thing = _context.Users.Find(-1);
-        if (thing == null) return NotFound();
-        return Ok(thing);
-    }
+        [Authorize]
+        [HttpGet("auth")]
+        public ActionResult<string> GetSecret()
+        {
+            return _buggyService.GetSecret();
+        }
 
-    [HttpGet("server-error")]
-    public ActionResult<string> GetServerError()
-    {
-        var thing = _context.Users.Find(-1);
-        var thingToReturn = thing.ToString();
-        return thingToReturn;
-    }
+        [HttpGet("not-found")]
+        public async Task<ActionResult> GetNotFound()
+        {
+            var user = await _buggyService.GetNotFoundAsync();
+            if (user == null)
+                return NotFound();
+            return Ok(user);
+        }
 
-    [HttpGet("bad-request")]
-    public ActionResult<string> GetBadRequest()
-    {
-        return BadRequest();
+        [HttpGet("server-error")]
+        public async Task<ActionResult<string>> GetServerError()
+        {
+            return await _buggyService.GetServerErrorAsync();
+        }
+
+        [HttpGet("bad-request")]
+        public ActionResult<string> GetBadRequest()
+        {
+            return BadRequest();
+        }
     }
 }

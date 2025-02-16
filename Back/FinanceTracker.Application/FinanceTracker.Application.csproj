@@ -8,12 +8,16 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="CloudinaryDotNet" Version="1.27.4" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.3.0" />
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.39" />
 	</ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FinanceTracker.Domain\FinanceTracker.Domain.csproj" />
+    <ProjectReference Include="..\FinanceTracker.Infra\FinanceTracker.Infra.csproj" />
+    <ProjectReference Include="..\FinanceTracker.Shared\FinanceTracker.Shared.csproj" />
   </ItemGroup>
 
 </Project>
