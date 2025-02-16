@@ -1,4 +1,4 @@
-﻿using FinanceTracker.API.Helpers;
+﻿using FinanceTracker.Shared.Helper;
 using System.Text.Json;
 
 namespace FinanceTracker.API.Extensions

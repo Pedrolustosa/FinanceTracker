@@ -1,40 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using FinanceTracker.API.Entities;
-using Microsoft.EntityFrameworkCore;
+using FinanceTracker.Application.Interface;
 
 namespace FinanceTracker.API.Controllers
 {
-    public class AdminController(UserManager<AppUser> userManager) : BaseApiController
+    public class AdminController(IAdminService adminService) : BaseApiController
     {
-        [Authorize(Policy = "RequireAdminRole")]
-        [HttpGet("users-with-roles")]
-        public async Task<ActionResult> GetUsersWithRoles()
-        {
-            var users = await userManager.Users.OrderBy(x => x.UserName).Select(x => new
-            {
-                x.Id,
-                Username = x.UserName,
-                Roles = x.UserRoles.Select(r => r.Role.Name).ToList()
-            }).ToListAsync();
-            return Ok(users);
-        }
+        private readonly IAdminService _adminService = adminService;
 
         [Authorize(Policy = "RequireAdminRole")]
         [HttpPut("edit-roles/{username}")]
         public async Task<ActionResult> EditRoles(string username, string roles)
         {
-            if(string.IsNullOrEmpty(roles)) return BadRequest("You must select at least one role");
-            var selectedRoles = roles.Split(",").ToArray();
-            var user = await userManager.FindByNameAsync(username);
-            if (user == null) return BadRequest("User not found");
-            var userRoles = await userManager.GetRolesAsync(user);
-            var result = await userManager.AddToRolesAsync(user, selectedRoles.Except(userRoles));
-            if (!result.Succeeded) return BadRequest("Failed to add to roles");
-            result = await userManager.RemoveFromRolesAsync(user, userRoles.Except(selectedRoles));
-            if (!result.Succeeded) return BadRequest("Failed to remove from roles");
-            return Ok(await userManager.GetRolesAsync(user));
+            if (string.IsNullOrEmpty(roles))
+                return BadRequest("You must select at least one role");
+
+            var updatedRoles = await _adminService.EditRoles(username, roles);
+            if (updatedRoles == null)
+                return BadRequest("User not found or error updating roles");
+
+            return Ok(updatedRoles);
         }
 
         [Authorize(Policy = "ModeratePhotoRole")]

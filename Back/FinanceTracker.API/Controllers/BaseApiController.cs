@@ -1,4 +1,4 @@
-﻿using FinanceTracker.API.Helpers;
+﻿using FinanceTracker.API.Helper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceTracker.API.Controllers;
